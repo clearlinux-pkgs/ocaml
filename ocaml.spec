@@ -9,6 +9,34 @@ Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires : ocaml-bin
 Requires : ocaml-lib
+BuildRequires : util-linux
+
+# temporarily manually add these until our rpm auto-generates these properly
+Provides: ocaml(Arg)
+Provides: ocaml(Array)
+Provides: ocaml(Buffer)
+Provides: ocaml(Bytes)
+Provides: ocaml(CamlinternalFormatBasics)
+Provides: ocaml(CamlinternalLazy)
+Provides: ocaml(Char)
+Provides: ocaml(Digest)
+Provides: ocaml(Filename)
+Provides: ocaml(Format)
+Provides: ocaml(Hashtbl)
+Provides: ocaml(Lazy)
+Provides: ocaml(Lexing)
+Provides: ocaml(List)
+Provides: ocaml(Map)
+Provides: ocaml(Pervasives)
+Provides: ocaml(Printexc)
+Provides: ocaml(Printf)
+Provides: ocaml(Queue)
+Provides: ocaml(runtime)
+Provides: ocaml(Scanf)
+Provides: ocaml(Set)
+Provides: ocaml(String)
+Provides: ocaml(Sys)
+Provides: ocaml(Unix)
 
 %package bin
 License:        GPL-2.0 LGPL-2.1
@@ -53,10 +81,12 @@ rm -rf %{buildroot}
 %make_install
 find %{buildroot} -name '*.cmt' -a -delete
 find %{buildroot} -name '*.cmti' -a -delete
-install -m0644 stdlib/libasmrun.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 otherlibs/unix/libunix.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 otherlibs/unix/unix.a %{buildroot}/usr/lib64/ocaml/
+install -m0644 stdlib/libasmrun.a %{buildroot}/usr/lib64/ocaml/
+install -m0644 stdlib/libcamlrun.a %{buildroot}/usr/lib64/ocaml
 install -m0644 stdlib/stdlib.a %{buildroot}/usr/lib64/ocaml/
+install -m0755 tools/ocamlobjinfo %{buildroot}/usr/bin
 
 %files
 %defattr(-,root,root,-)
