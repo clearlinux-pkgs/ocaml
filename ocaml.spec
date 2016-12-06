@@ -51,6 +51,7 @@ programming language
 License:        GPL-2.0 LGPL-2.1
 Summary:        programming language
 Group:          doc
+Provides:	ocaml(runtime) = %{version}
 
 %description lib
 programming language
