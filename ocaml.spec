@@ -83,7 +83,9 @@ rm -rf %{buildroot}
 find %{buildroot} -name '*.cmt' -a -delete
 find %{buildroot} -name '*.cmti' -a -delete
 install -m0644 otherlibs/bigarray/bigarray.a %{buildroot}/usr/lib64/ocaml/
+install -m0644 otherlibs/bigarray/libbigarray.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 otherlibs/str/str.a %{buildroot}/usr/lib64/ocaml/
+install -m0644 otherlibs/str/libcamlstr.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 otherlibs/unix/libunix.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 otherlibs/unix/unix.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 stdlib/libasmrun.a %{buildroot}/usr/lib64/ocaml/
