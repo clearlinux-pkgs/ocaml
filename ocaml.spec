@@ -1,6 +1,6 @@
 Name     : ocaml
 Version  : 4.04.0
-Release  : 1
+Release  : 2
 URL      : http://caml.inria.fr/pub/distrib/ocaml-4.04/ocaml-4.04.0.tar.xz
 Source0  : http://caml.inria.fr/pub/distrib/ocaml-4.04/ocaml-4.04.0.tar.xz
 Patch1   : 0001-configure-Allow-user-defined-C-compiler-flags.patch
@@ -89,8 +89,10 @@ install -m0644 otherlibs/str/libcamlstr.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 otherlibs/unix/libunix.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 otherlibs/unix/unix.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 stdlib/libasmrun.a %{buildroot}/usr/lib64/ocaml/
+install -m0644 asmrun/libasmrunp.a %{buildroot}/usr/lib64/ocaml/
 install -m0644 stdlib/libcamlrun.a %{buildroot}/usr/lib64/ocaml
 install -m0644 stdlib/stdlib.a %{buildroot}/usr/lib64/ocaml/
+install -m0644 stdlib/stdlib.p.a %{buildroot}/usr/lib64/ocaml/
 install -m0755 tools/ocamlobjinfo %{buildroot}/usr/bin
 
 %files
