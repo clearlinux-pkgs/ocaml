@@ -1,6 +1,6 @@
 Name     : ocaml
 Version  : 4.04.1
-Release  : 2
+Release  : 3
 URL      : http://caml.inria.fr/pub/distrib/ocaml-4.04/ocaml-4.04.1.tar.xz
 Source0  : http://caml.inria.fr/pub/distrib/ocaml-4.04/ocaml-4.04.1.tar.xz
 Patch1   : 0001-configure-Allow-user-defined-C-compiler-flags.patch
