@@ -101,6 +101,7 @@ install -m0755 tools/ocamlobjinfo %{buildroot}/usr/bin
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/*
+%exclude /usr/bin/ocaml-instr-report
 
 %files lib
 %defattr(-,root,root,-)
