@@ -1,6 +1,6 @@
 Name     : ocaml
 Version  : 4.07.0
-Release  : 6
+Release  : 7
 URL      : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.0.tar.xz
 Source0  : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.0.tar.xz
 Patch1   : 0001-configure-Allow-user-defined-C-compiler-flags.patch
@@ -48,7 +48,7 @@ programming language
 
 %build
 export LANG=C
-./configure -prefix /usr -fPIC
+./configure -prefix /usr -libdir /usr/lib64/ocaml -fPIC
 make world.opt %{?_smp_mflags}
 
 %install
