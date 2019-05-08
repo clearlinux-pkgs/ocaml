@@ -1,8 +1,8 @@
 Name     : ocaml
-Version  : 4.07.0
-Release  : 7
-URL      : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.0.tar.xz
-Source0  : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.0.tar.xz
+Version  : 4.07.1
+Release  : 8
+URL      : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.1.tar.xz
+Source0  : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.1.tar.xz
 Patch1   : 0001-configure-Allow-user-defined-C-compiler-flags.patch
 Summary  : programming language
 Group    : Development/Tools
@@ -43,7 +43,7 @@ Group:          doc
 programming language
 
 %prep
-%setup -q -n ocaml-4.07.0
+%setup -q -n ocaml-4.07.1
 %patch1 -p1
 
 %build
