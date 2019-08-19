@@ -1,0 +1,2 @@
+find %{buildroot} -name '*.cmt' -a -delete
+find %{buildroot} -name '*.cmti' -a -delete
