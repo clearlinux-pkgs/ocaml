@@ -4,7 +4,7 @@
 #
 Name     : ocaml
 Version  : 4.07.1
-Release  : 16
+Release  : 17
 URL      : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.1.tar.xz
 Source0  : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.1.tar.xz
 Summary  : programming language supporting functional, imperative and object-oriented styles
@@ -80,7 +80,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1566332754
+export SOURCE_DATE_EPOCH=1566930602
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -93,7 +93,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags} world.opt
 
 %install
-export SOURCE_DATE_EPOCH=1566332754
+export SOURCE_DATE_EPOCH=1566930602
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ocaml
 cp LICENSE %{buildroot}/usr/share/package-licenses/ocaml/LICENSE
