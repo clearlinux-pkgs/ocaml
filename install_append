@@ -1,2 +1,3 @@
 find %{buildroot} -name '*.cmt' -a -delete
 find %{buildroot} -name '*.cmti' -a -delete
+find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;

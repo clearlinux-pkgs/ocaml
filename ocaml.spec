@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : ocaml
 Version  : 4.07.1
-Release  : 20
+Release  : 22
 URL      : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.1.tar.xz
 Source0  : http://caml.inria.fr/pub/distrib/ocaml-4.07/ocaml-4.07.1.tar.xz
 Summary  : programming language supporting functional, imperative and object-oriented styles
@@ -81,7 +81,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1566938577
+export SOURCE_DATE_EPOCH=1571155129
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -91,20 +91,21 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure  || ./configure -prefix /usr -libdir /usr/lib64/ocaml -fPIC
-make  %{?_smp_mflags} world.opt
+make  %{?_smp_mflags}  world.opt
 
 %install
-export SOURCE_DATE_EPOCH=1566938577
+export SOURCE_DATE_EPOCH=1571155129
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ocaml
-cp LICENSE %{buildroot}/usr/share/package-licenses/ocaml/LICENSE
-cp emacs/COPYING %{buildroot}/usr/share/package-licenses/ocaml/emacs_COPYING
+cp %{_builddir}/ocaml-4.07.1/LICENSE %{buildroot}/usr/share/package-licenses/ocaml/2cbf60356355aaf874db8ec7d6c6bb4462281c46
+cp %{_builddir}/ocaml-4.07.1/emacs/COPYING %{buildroot}/usr/share/package-licenses/ocaml/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
 %make_install MANDIR=/usr/share/man
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/ocaml-instr-report
 ## install_append content
 find %{buildroot} -name '*.cmt' -a -delete
 find %{buildroot} -name '*.cmti' -a -delete
+find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 ## install_append end
 
 %files
@@ -1575,8 +1576,8 @@ find %{buildroot} -name '*.cmti' -a -delete
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/ocaml/LICENSE
-/usr/share/package-licenses/ocaml/emacs_COPYING
+/usr/share/package-licenses/ocaml/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
+/usr/share/package-licenses/ocaml/2cbf60356355aaf874db8ec7d6c6bb4462281c46
 
 %files man
 %defattr(0644,root,root,0755)
