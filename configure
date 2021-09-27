@@ -1,1 +1,4 @@
-|| ./configure -prefix /usr -libdir /usr/lib64/ocaml -fPIC
+--libdir=/usr/lib64/ocaml
+--mandir=/usr/share/man
+--with-pic
+AS=/usr/bin/as
