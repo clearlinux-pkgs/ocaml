@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : ocaml
 Version  : 4.13.0
-Release  : 23
+Release  : 24
 URL      : https://caml.inria.fr/pub/distrib/ocaml-4.13/ocaml-4.13.0.tar.xz
 Source0  : https://caml.inria.fr/pub/distrib/ocaml-4.13/ocaml-4.13.0.tar.xz
 Summary  : programming language supporting functional, imperative and object-oriented styles
