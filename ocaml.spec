@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : ocaml
-Version  : 4.13.0
-Release  : 24
-URL      : https://caml.inria.fr/pub/distrib/ocaml-4.13/ocaml-4.13.0.tar.xz
-Source0  : https://caml.inria.fr/pub/distrib/ocaml-4.13/ocaml-4.13.0.tar.xz
+Version  : 4.13.1
+Release  : 25
+URL      : https://caml.inria.fr/pub/distrib/ocaml-4.13/ocaml-4.13.1.tar.xz
+Source0  : https://caml.inria.fr/pub/distrib/ocaml-4.13/ocaml-4.13.1.tar.xz
 Summary  : programming language supporting functional, imperative and object-oriented styles
 Group    : Development/Tools
 License  : CC-BY-SA-4.0 LGPL-2.1
@@ -71,15 +71,15 @@ man components for the ocaml package.
 
 
 %prep
-%setup -q -n ocaml-4.13.0
-cd %{_builddir}/ocaml-4.13.0
+%setup -q -n ocaml-4.13.1
+cd %{_builddir}/ocaml-4.13.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632782683
+export SOURCE_DATE_EPOCH=1633035569
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -95,11 +95,11 @@ AS=/usr/bin/as
 make  %{?_smp_mflags}  world.opt
 
 %install
-export SOURCE_DATE_EPOCH=1632782683
+export SOURCE_DATE_EPOCH=1633035569
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ocaml
-cp %{_builddir}/ocaml-4.13.0/LICENSE %{buildroot}/usr/share/package-licenses/ocaml/2cbf60356355aaf874db8ec7d6c6bb4462281c46
-cp %{_builddir}/ocaml-4.13.0/manual/LICENSE-for-the-manual %{buildroot}/usr/share/package-licenses/ocaml/764217e2ff9418e07fbc56dcc318d8e05d91de6d
+cp %{_builddir}/ocaml-4.13.1/LICENSE %{buildroot}/usr/share/package-licenses/ocaml/2cbf60356355aaf874db8ec7d6c6bb4462281c46
+cp %{_builddir}/ocaml-4.13.1/manual/LICENSE-for-the-manual %{buildroot}/usr/share/package-licenses/ocaml/764217e2ff9418e07fbc56dcc318d8e05d91de6d
 %make_install MANDIR=/usr/share/man
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/ocaml-instr-report
