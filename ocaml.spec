@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : ocaml
-Version  : 4.14.0
-Release  : 27
-URL      : https://caml.inria.fr/pub/distrib/ocaml-4.14/ocaml-4.14.0.tar.xz
-Source0  : https://caml.inria.fr/pub/distrib/ocaml-4.14/ocaml-4.14.0.tar.xz
+Version  : 5.0.0
+Release  : 28
+URL      : https://caml.inria.fr/pub/distrib/ocaml-5.0/ocaml-5.0.0.tar.xz
+Source0  : https://caml.inria.fr/pub/distrib/ocaml-5.0/ocaml-5.0.0.tar.xz
 Summary  : programming language supporting functional, imperative and object-oriented styles
 Group    : Development/Tools
 License  : CC-BY-SA-4.0 LGPL-2.1
@@ -80,15 +80,15 @@ man components for the ocaml package.
 
 
 %prep
-%setup -q -n ocaml-4.14.0
-cd %{_builddir}/ocaml-4.14.0
+%setup -q -n ocaml-5.0.0
+cd %{_builddir}/ocaml-5.0.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1652224585
+export SOURCE_DATE_EPOCH=1672189049
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -104,11 +104,11 @@ AS=/usr/bin/as
 make  %{?_smp_mflags}  world.opt
 
 %install
-export SOURCE_DATE_EPOCH=1652224585
+export SOURCE_DATE_EPOCH=1672189049
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ocaml
-cp %{_builddir}/ocaml-4.14.0/LICENSE %{buildroot}/usr/share/package-licenses/ocaml/2cbf60356355aaf874db8ec7d6c6bb4462281c46
-cp %{_builddir}/ocaml-4.14.0/manual/LICENSE-for-the-manual %{buildroot}/usr/share/package-licenses/ocaml/764217e2ff9418e07fbc56dcc318d8e05d91de6d
+cp %{_builddir}/ocaml-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/ocaml/2cbf60356355aaf874db8ec7d6c6bb4462281c46
+cp %{_builddir}/ocaml-%{version}/manual/LICENSE-for-the-manual %{buildroot}/usr/share/package-licenses/ocaml/764217e2ff9418e07fbc56dcc318d8e05d91de6d
 %make_install MANDIR=/usr/share/man
 ## Remove excluded files
 rm -f %{buildroot}*/usr/bin/ocaml-instr-report
@@ -129,12 +129,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/arrayLabels.mli
 /usr/lib64/ocaml/atomic.ml
 /usr/lib64/ocaml/atomic.mli
-/usr/lib64/ocaml/bigarray.a
-/usr/lib64/ocaml/bigarray.cma
-/usr/lib64/ocaml/bigarray.cmi
-/usr/lib64/ocaml/bigarray.cmx
-/usr/lib64/ocaml/bigarray.cmxa
-/usr/lib64/ocaml/bigarray.cmxs
 /usr/lib64/ocaml/bigarray.ml
 /usr/lib64/ocaml/bigarray.mli
 /usr/lib64/ocaml/bool.ml
@@ -148,15 +142,17 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/callback.ml
 /usr/lib64/ocaml/callback.mli
 /usr/lib64/ocaml/caml/address_class.h
+/usr/lib64/ocaml/caml/addrmap.h
 /usr/lib64/ocaml/caml/alloc.h
+/usr/lib64/ocaml/caml/atomic_refcount.h
 /usr/lib64/ocaml/caml/backtrace.h
 /usr/lib64/ocaml/caml/backtrace_prim.h
 /usr/lib64/ocaml/caml/bigarray.h
 /usr/lib64/ocaml/caml/callback.h
+/usr/lib64/ocaml/caml/camlatomic.h
 /usr/lib64/ocaml/caml/codefrag.h
 /usr/lib64/ocaml/caml/compact.h
 /usr/lib64/ocaml/caml/compare.h
-/usr/lib64/ocaml/caml/compatibility.h
 /usr/lib64/ocaml/caml/config.h
 /usr/lib64/ocaml/caml/custom.h
 /usr/lib64/ocaml/caml/debugger.h
@@ -164,14 +160,15 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/caml/domain_state.h
 /usr/lib64/ocaml/caml/domain_state.tbl
 /usr/lib64/ocaml/caml/dynlink.h
-/usr/lib64/ocaml/caml/eventlog.h
 /usr/lib64/ocaml/caml/exec.h
 /usr/lib64/ocaml/caml/fail.h
+/usr/lib64/ocaml/caml/fiber.h
 /usr/lib64/ocaml/caml/finalise.h
 /usr/lib64/ocaml/caml/fix_code.h
-/usr/lib64/ocaml/caml/freelist.h
+/usr/lib64/ocaml/caml/frame_descriptors.h
 /usr/lib64/ocaml/caml/gc.h
 /usr/lib64/ocaml/caml/gc_ctrl.h
+/usr/lib64/ocaml/caml/gc_stats.h
 /usr/lib64/ocaml/caml/globroots.h
 /usr/lib64/ocaml/caml/hash.h
 /usr/lib64/ocaml/caml/hooks.h
@@ -181,6 +178,7 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/caml/intext.h
 /usr/lib64/ocaml/caml/io.h
 /usr/lib64/ocaml/caml/jumptbl.h
+/usr/lib64/ocaml/caml/lf_skiplist.h
 /usr/lib64/ocaml/caml/m.h
 /usr/lib64/ocaml/caml/major_gc.h
 /usr/lib64/ocaml/caml/md5.h
@@ -191,22 +189,25 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/caml/mlvalues.h
 /usr/lib64/ocaml/caml/opnames.h
 /usr/lib64/ocaml/caml/osdeps.h
+/usr/lib64/ocaml/caml/platform.h
 /usr/lib64/ocaml/caml/prims.h
 /usr/lib64/ocaml/caml/printexc.h
 /usr/lib64/ocaml/caml/reverse.h
 /usr/lib64/ocaml/caml/roots.h
+/usr/lib64/ocaml/caml/runtime_events.h
+/usr/lib64/ocaml/caml/runtime_events_consumer.h
 /usr/lib64/ocaml/caml/s.h
+/usr/lib64/ocaml/caml/shared_heap.h
 /usr/lib64/ocaml/caml/signals.h
-/usr/lib64/ocaml/caml/signals_machdep.h
+/usr/lib64/ocaml/caml/sizeclasses.h
 /usr/lib64/ocaml/caml/skiplist.h
 /usr/lib64/ocaml/caml/socketaddr.h
 /usr/lib64/ocaml/caml/stack.h
-/usr/lib64/ocaml/caml/stacks.h
 /usr/lib64/ocaml/caml/startup.h
 /usr/lib64/ocaml/caml/startup_aux.h
+/usr/lib64/ocaml/caml/sync.h
 /usr/lib64/ocaml/caml/sys.h
 /usr/lib64/ocaml/caml/threads.h
-/usr/lib64/ocaml/caml/ui.h
 /usr/lib64/ocaml/caml/unixsupport.h
 /usr/lib64/ocaml/caml/version.h
 /usr/lib64/ocaml/caml/weak.h
@@ -215,10 +216,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/camlheader_ur
 /usr/lib64/ocaml/camlheaderd
 /usr/lib64/ocaml/camlheaderi
-/usr/lib64/ocaml/camlinternalAtomic.cmi
-/usr/lib64/ocaml/camlinternalAtomic.cmx
-/usr/lib64/ocaml/camlinternalAtomic.ml
-/usr/lib64/ocaml/camlinternalAtomic.mli
 /usr/lib64/ocaml/camlinternalFormat.cmi
 /usr/lib64/ocaml/camlinternalFormat.cmx
 /usr/lib64/ocaml/camlinternalFormat.ml
@@ -246,6 +243,7 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/compiler-libs/CSEgen.cmi
 /usr/lib64/ocaml/compiler-libs/CSEgen.cmx
 /usr/lib64/ocaml/compiler-libs/CSEgen.mli
+/usr/lib64/ocaml/compiler-libs/META
 /usr/lib64/ocaml/compiler-libs/afl_instrument.cmi
 /usr/lib64/ocaml/compiler-libs/afl_instrument.cmx
 /usr/lib64/ocaml/compiler-libs/afl_instrument.mli
@@ -429,6 +427,10 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/compiler-libs/config.cmi
 /usr/lib64/ocaml/compiler-libs/config.cmx
 /usr/lib64/ocaml/compiler-libs/config.mli
+/usr/lib64/ocaml/compiler-libs/config_boot.cmi
+/usr/lib64/ocaml/compiler-libs/config_boot.mli
+/usr/lib64/ocaml/compiler-libs/config_main.cmi
+/usr/lib64/ocaml/compiler-libs/config_main.mli
 /usr/lib64/ocaml/compiler-libs/consistbl.cmi
 /usr/lib64/ocaml/compiler-libs/consistbl.cmx
 /usr/lib64/ocaml/compiler-libs/consistbl.mli
@@ -1061,23 +1063,29 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/compiler-libs/x86_proc.mli
 /usr/lib64/ocaml/complex.ml
 /usr/lib64/ocaml/complex.mli
+/usr/lib64/ocaml/condition.ml
+/usr/lib64/ocaml/condition.mli
 /usr/lib64/ocaml/digest.ml
 /usr/lib64/ocaml/digest.mli
-/usr/lib64/ocaml/dynlink.a
-/usr/lib64/ocaml/dynlink.cma
-/usr/lib64/ocaml/dynlink.cmi
-/usr/lib64/ocaml/dynlink.cmx
-/usr/lib64/ocaml/dynlink.cmxa
-/usr/lib64/ocaml/dynlink.mli
-/usr/lib64/ocaml/dynlink_common.cmx
-/usr/lib64/ocaml/dynlink_compilerlibs.cmx
-/usr/lib64/ocaml/dynlink_platform_intf.cmx
-/usr/lib64/ocaml/dynlink_types.cmx
+/usr/lib64/ocaml/domain.ml
+/usr/lib64/ocaml/domain.mli
+/usr/lib64/ocaml/dynlink/META
+/usr/lib64/ocaml/dynlink/dynlink.a
+/usr/lib64/ocaml/dynlink/dynlink.cma
+/usr/lib64/ocaml/dynlink/dynlink.cmi
+/usr/lib64/ocaml/dynlink/dynlink.cmx
+/usr/lib64/ocaml/dynlink/dynlink.cmxa
+/usr/lib64/ocaml/dynlink/dynlink.mli
+/usr/lib64/ocaml/dynlink/dynlink_common.cmx
+/usr/lib64/ocaml/dynlink/dynlink_compilerlibs.cmx
+/usr/lib64/ocaml/dynlink/dynlink_platform_intf.cmx
+/usr/lib64/ocaml/dynlink/dynlink_types.cmx
+/usr/lib64/ocaml/effect.ml
+/usr/lib64/ocaml/effect.mli
 /usr/lib64/ocaml/either.ml
 /usr/lib64/ocaml/either.mli
 /usr/lib64/ocaml/ephemeron.ml
 /usr/lib64/ocaml/ephemeron.mli
-/usr/lib64/ocaml/eventlog_metadata
 /usr/lib64/ocaml/expunge
 /usr/lib64/ocaml/filename.ml
 /usr/lib64/ocaml/filename.mli
@@ -1089,8 +1097,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/fun.mli
 /usr/lib64/ocaml/gc.ml
 /usr/lib64/ocaml/gc.mli
-/usr/lib64/ocaml/genlex.ml
-/usr/lib64/ocaml/genlex.mli
 /usr/lib64/ocaml/hashtbl.ml
 /usr/lib64/ocaml/hashtbl.mli
 /usr/lib64/ocaml/in_channel.ml
@@ -1114,6 +1120,7 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/libcamlrun_pic.a
 /usr/lib64/ocaml/libcamlrund.a
 /usr/lib64/ocaml/libcamlruni.a
+/usr/lib64/ocaml/libcamlruntime_events.a
 /usr/lib64/ocaml/libcamlstr.a
 /usr/lib64/ocaml/libthreads.a
 /usr/lib64/ocaml/libthreadsnat.a
@@ -1128,10 +1135,13 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/marshal.mli
 /usr/lib64/ocaml/moreLabels.ml
 /usr/lib64/ocaml/moreLabels.mli
+/usr/lib64/ocaml/mutex.ml
+/usr/lib64/ocaml/mutex.mli
 /usr/lib64/ocaml/nativeint.ml
 /usr/lib64/ocaml/nativeint.mli
 /usr/lib64/ocaml/obj.ml
 /usr/lib64/ocaml/obj.mli
+/usr/lib64/ocaml/ocamldoc/META
 /usr/lib64/ocaml/ocamldoc/ocamldoc.hva
 /usr/lib64/ocaml/ocamldoc/odoc.cmi
 /usr/lib64/ocaml/ocamldoc/odoc.cmx
@@ -1232,6 +1242,8 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/ocamldoc/odoc_types.cmx
 /usr/lib64/ocaml/ocamldoc/odoc_value.cmi
 /usr/lib64/ocaml/ocamldoc/odoc_value.cmx
+/usr/lib64/ocaml/ocamlmktop/ocamlmktop_init.cmi
+/usr/lib64/ocaml/ocamlmktop/ocamlmktop_init.cmo
 /usr/lib64/ocaml/oo.ml
 /usr/lib64/ocaml/oo.mli
 /usr/lib64/ocaml/option.ml
@@ -1240,23 +1252,32 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/out_channel.mli
 /usr/lib64/ocaml/parsing.ml
 /usr/lib64/ocaml/parsing.mli
-/usr/lib64/ocaml/pervasives.ml
 /usr/lib64/ocaml/printexc.ml
 /usr/lib64/ocaml/printexc.mli
 /usr/lib64/ocaml/printf.ml
 /usr/lib64/ocaml/printf.mli
-/usr/lib64/ocaml/profiling.cmi
-/usr/lib64/ocaml/profiling.cmo
-/usr/lib64/ocaml/profiling.cmx
-/usr/lib64/ocaml/profiling.o
+/usr/lib64/ocaml/profiling/profiling.cmi
+/usr/lib64/ocaml/profiling/profiling.cmo
+/usr/lib64/ocaml/profiling/profiling.cmx
+/usr/lib64/ocaml/profiling/profiling.o
 /usr/lib64/ocaml/queue.ml
 /usr/lib64/ocaml/queue.mli
 /usr/lib64/ocaml/random.ml
 /usr/lib64/ocaml/random.mli
 /usr/lib64/ocaml/result.ml
 /usr/lib64/ocaml/result.mli
+/usr/lib64/ocaml/runtime_events/META
+/usr/lib64/ocaml/runtime_events/runtime_events.a
+/usr/lib64/ocaml/runtime_events/runtime_events.cma
+/usr/lib64/ocaml/runtime_events/runtime_events.cmi
+/usr/lib64/ocaml/runtime_events/runtime_events.cmx
+/usr/lib64/ocaml/runtime_events/runtime_events.cmxa
+/usr/lib64/ocaml/runtime_events/runtime_events.cmxs
+/usr/lib64/ocaml/runtime_events/runtime_events.mli
 /usr/lib64/ocaml/scanf.ml
 /usr/lib64/ocaml/scanf.mli
+/usr/lib64/ocaml/semaphore.ml
+/usr/lib64/ocaml/semaphore.mli
 /usr/lib64/ocaml/seq.ml
 /usr/lib64/ocaml/seq.mli
 /usr/lib64/ocaml/set.ml
@@ -1277,6 +1298,7 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/stdlib.cmxa
 /usr/lib64/ocaml/stdlib.ml
 /usr/lib64/ocaml/stdlib.mli
+/usr/lib64/ocaml/stdlib/META
 /usr/lib64/ocaml/stdlib__Arg.cmi
 /usr/lib64/ocaml/stdlib__Arg.cmx
 /usr/lib64/ocaml/stdlib__Array.cmi
@@ -1301,8 +1323,14 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/stdlib__Char.cmx
 /usr/lib64/ocaml/stdlib__Complex.cmi
 /usr/lib64/ocaml/stdlib__Complex.cmx
+/usr/lib64/ocaml/stdlib__Condition.cmi
+/usr/lib64/ocaml/stdlib__Condition.cmx
 /usr/lib64/ocaml/stdlib__Digest.cmi
 /usr/lib64/ocaml/stdlib__Digest.cmx
+/usr/lib64/ocaml/stdlib__Domain.cmi
+/usr/lib64/ocaml/stdlib__Domain.cmx
+/usr/lib64/ocaml/stdlib__Effect.cmi
+/usr/lib64/ocaml/stdlib__Effect.cmx
 /usr/lib64/ocaml/stdlib__Either.cmi
 /usr/lib64/ocaml/stdlib__Either.cmx
 /usr/lib64/ocaml/stdlib__Ephemeron.cmi
@@ -1317,8 +1345,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/stdlib__Fun.cmx
 /usr/lib64/ocaml/stdlib__Gc.cmi
 /usr/lib64/ocaml/stdlib__Gc.cmx
-/usr/lib64/ocaml/stdlib__Genlex.cmi
-/usr/lib64/ocaml/stdlib__Genlex.cmx
 /usr/lib64/ocaml/stdlib__Hashtbl.cmi
 /usr/lib64/ocaml/stdlib__Hashtbl.cmx
 /usr/lib64/ocaml/stdlib__In_channel.cmi
@@ -1343,6 +1369,8 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/stdlib__Marshal.cmx
 /usr/lib64/ocaml/stdlib__MoreLabels.cmi
 /usr/lib64/ocaml/stdlib__MoreLabels.cmx
+/usr/lib64/ocaml/stdlib__Mutex.cmi
+/usr/lib64/ocaml/stdlib__Mutex.cmx
 /usr/lib64/ocaml/stdlib__Nativeint.cmi
 /usr/lib64/ocaml/stdlib__Nativeint.cmx
 /usr/lib64/ocaml/stdlib__Obj.cmi
@@ -1355,8 +1383,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/stdlib__Out_channel.cmx
 /usr/lib64/ocaml/stdlib__Parsing.cmi
 /usr/lib64/ocaml/stdlib__Parsing.cmx
-/usr/lib64/ocaml/stdlib__Pervasives.cmi
-/usr/lib64/ocaml/stdlib__Pervasives.cmx
 /usr/lib64/ocaml/stdlib__Printexc.cmi
 /usr/lib64/ocaml/stdlib__Printexc.cmx
 /usr/lib64/ocaml/stdlib__Printf.cmi
@@ -1369,6 +1395,8 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/stdlib__Result.cmx
 /usr/lib64/ocaml/stdlib__Scanf.cmi
 /usr/lib64/ocaml/stdlib__Scanf.cmx
+/usr/lib64/ocaml/stdlib__Semaphore.cmi
+/usr/lib64/ocaml/stdlib__Semaphore.cmx
 /usr/lib64/ocaml/stdlib__Seq.cmi
 /usr/lib64/ocaml/stdlib__Seq.cmx
 /usr/lib64/ocaml/stdlib__Set.cmi
@@ -1377,8 +1405,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/stdlib__Stack.cmx
 /usr/lib64/ocaml/stdlib__StdLabels.cmi
 /usr/lib64/ocaml/stdlib__StdLabels.cmx
-/usr/lib64/ocaml/stdlib__Stream.cmi
-/usr/lib64/ocaml/stdlib__Stream.cmx
 /usr/lib64/ocaml/stdlib__String.cmi
 /usr/lib64/ocaml/stdlib__String.cmx
 /usr/lib64/ocaml/stdlib__StringLabels.cmi
@@ -1391,58 +1417,46 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/lib64/ocaml/stdlib__Unit.cmx
 /usr/lib64/ocaml/stdlib__Weak.cmi
 /usr/lib64/ocaml/stdlib__Weak.cmx
-/usr/lib64/ocaml/str.a
-/usr/lib64/ocaml/str.cma
-/usr/lib64/ocaml/str.cmi
-/usr/lib64/ocaml/str.cmx
-/usr/lib64/ocaml/str.cmxa
-/usr/lib64/ocaml/str.cmxs
-/usr/lib64/ocaml/str.mli
-/usr/lib64/ocaml/stream.ml
-/usr/lib64/ocaml/stream.mli
+/usr/lib64/ocaml/str/META
+/usr/lib64/ocaml/str/str.a
+/usr/lib64/ocaml/str/str.cma
+/usr/lib64/ocaml/str/str.cmi
+/usr/lib64/ocaml/str/str.cmx
+/usr/lib64/ocaml/str/str.cmxa
+/usr/lib64/ocaml/str/str.cmxs
+/usr/lib64/ocaml/str/str.mli
 /usr/lib64/ocaml/string.ml
 /usr/lib64/ocaml/string.mli
 /usr/lib64/ocaml/stringLabels.ml
 /usr/lib64/ocaml/stringLabels.mli
 /usr/lib64/ocaml/sys.ml
+/usr/lib64/ocaml/sys.ml.in
 /usr/lib64/ocaml/sys.mli
-/usr/lib64/ocaml/threads/condition.cmi
-/usr/lib64/ocaml/threads/condition.cmx
-/usr/lib64/ocaml/threads/condition.mli
+/usr/lib64/ocaml/threads/META
 /usr/lib64/ocaml/threads/event.cmi
 /usr/lib64/ocaml/threads/event.cmx
 /usr/lib64/ocaml/threads/event.mli
-/usr/lib64/ocaml/threads/mutex.cmi
-/usr/lib64/ocaml/threads/mutex.cmx
-/usr/lib64/ocaml/threads/mutex.mli
-/usr/lib64/ocaml/threads/semaphore.cmi
-/usr/lib64/ocaml/threads/semaphore.cmx
-/usr/lib64/ocaml/threads/semaphore.mli
 /usr/lib64/ocaml/threads/thread.cmi
 /usr/lib64/ocaml/threads/thread.cmx
 /usr/lib64/ocaml/threads/thread.mli
-/usr/lib64/ocaml/threads/threadUnix.cmi
-/usr/lib64/ocaml/threads/threadUnix.cmx
-/usr/lib64/ocaml/threads/threadUnix.mli
 /usr/lib64/ocaml/threads/threads.a
 /usr/lib64/ocaml/threads/threads.cma
 /usr/lib64/ocaml/threads/threads.cmxa
-/usr/lib64/ocaml/topdirs.cmi
-/usr/lib64/ocaml/topdirs.mli
 /usr/lib64/ocaml/uchar.ml
 /usr/lib64/ocaml/uchar.mli
 /usr/lib64/ocaml/unit.ml
 /usr/lib64/ocaml/unit.mli
-/usr/lib64/ocaml/unix.a
-/usr/lib64/ocaml/unix.cma
-/usr/lib64/ocaml/unix.cmi
-/usr/lib64/ocaml/unix.cmx
-/usr/lib64/ocaml/unix.cmxa
-/usr/lib64/ocaml/unix.cmxs
-/usr/lib64/ocaml/unix.mli
-/usr/lib64/ocaml/unixLabels.cmi
-/usr/lib64/ocaml/unixLabels.cmx
-/usr/lib64/ocaml/unixLabels.mli
+/usr/lib64/ocaml/unix/META
+/usr/lib64/ocaml/unix/unix.a
+/usr/lib64/ocaml/unix/unix.cma
+/usr/lib64/ocaml/unix/unix.cmi
+/usr/lib64/ocaml/unix/unix.cmx
+/usr/lib64/ocaml/unix/unix.cmxa
+/usr/lib64/ocaml/unix/unix.cmxs
+/usr/lib64/ocaml/unix/unix.mli
+/usr/lib64/ocaml/unix/unixLabels.cmi
+/usr/lib64/ocaml/unix/unixLabels.cmx
+/usr/lib64/ocaml/unix/unixLabels.mli
 /usr/lib64/ocaml/weak.ml
 /usr/lib64/ocaml/weak.mli
 
@@ -1544,7 +1558,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Bytes.3o
 /usr/share/man/man3/BytesLabels.3o
 /usr/share/man/man3/Callback.3o
-/usr/share/man/man3/CamlinternalAtomic.3o
 /usr/share/man/man3/CamlinternalFormat.3o
 /usr/share/man/man3/CamlinternalFormatBasics.3o
 /usr/share/man/man3/CamlinternalLazy.3o
@@ -1595,6 +1608,8 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Complex.3o
 /usr/share/man/man3/Condition.3o
 /usr/share/man/man3/Config.3o
+/usr/share/man/man3/Config_boot.3o
+/usr/share/man/man3/Config_main.3o
 /usr/share/man/man3/Consistbl.3o
 /usr/share/man/man3/Consistbl.Make.3o
 /usr/share/man/man3/Depend.3o
@@ -1614,12 +1629,15 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Digest.3o
 /usr/share/man/man3/Docstrings.3o
 /usr/share/man/man3/Docstrings.WithMenhir.3o
+/usr/share/man/man3/Domain.3o
+/usr/share/man/man3/Domain.DLS.3o
 /usr/share/man/man3/Domainstate.3o
 /usr/share/man/man3/Dynlink.3o
+/usr/share/man/man3/Effect.3o
+/usr/share/man/man3/Effect.Deep.3o
+/usr/share/man/man3/Effect.Shallow.3o
 /usr/share/man/man3/Either.3o
 /usr/share/man/man3/Ephemeron.3o
-/usr/share/man/man3/Ephemeron.GenHashTable.3o
-/usr/share/man/man3/Ephemeron.GenHashTable.MakeSeeded.3o
 /usr/share/man/man3/Ephemeron.K1.3o
 /usr/share/man/man3/Ephemeron.K1.Bucket.3o
 /usr/share/man/man3/Ephemeron.K1.Make.3o
@@ -1644,7 +1662,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Fun.3o
 /usr/share/man/man3/Gc.3o
 /usr/share/man/man3/Gc.Memprof.3o
-/usr/share/man/man3/Genlex.3o
 /usr/share/man/man3/Hashtbl.3o
 /usr/share/man/man3/Hashtbl.HashedType.3o
 /usr/share/man/man3/Hashtbl.Make.3o
@@ -1750,6 +1767,9 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Random.3o
 /usr/share/man/man3/Random.State.3o
 /usr/share/man/man3/Result.3o
+/usr/share/man/man3/Runtime_events.3o
+/usr/share/man/man3/Runtime_events.Callbacks.3o
+/usr/share/man/man3/Runtime_events.Timestamp.3o
 /usr/share/man/man3/Scanf.3o
 /usr/share/man/man3/Scanf.Scanning.3o
 /usr/share/man/man3/Semaphore.3o
@@ -1779,7 +1799,10 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Stdlib.Callback.3o
 /usr/share/man/man3/Stdlib.Char.3o
 /usr/share/man/man3/Stdlib.Complex.3o
+/usr/share/man/man3/Stdlib.Condition.3o
 /usr/share/man/man3/Stdlib.Digest.3o
+/usr/share/man/man3/Stdlib.Domain.3o
+/usr/share/man/man3/Stdlib.Effect.3o
 /usr/share/man/man3/Stdlib.Either.3o
 /usr/share/man/man3/Stdlib.Ephemeron.3o
 /usr/share/man/man3/Stdlib.Filename.3o
@@ -1787,7 +1810,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Stdlib.Format.3o
 /usr/share/man/man3/Stdlib.Fun.3o
 /usr/share/man/man3/Stdlib.Gc.3o
-/usr/share/man/man3/Stdlib.Genlex.3o
 /usr/share/man/man3/Stdlib.Hashtbl.3o
 /usr/share/man/man3/Stdlib.In_channel.3o
 /usr/share/man/man3/Stdlib.Int.3o
@@ -1801,24 +1823,24 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Stdlib.Map.3o
 /usr/share/man/man3/Stdlib.Marshal.3o
 /usr/share/man/man3/Stdlib.MoreLabels.3o
+/usr/share/man/man3/Stdlib.Mutex.3o
 /usr/share/man/man3/Stdlib.Nativeint.3o
 /usr/share/man/man3/Stdlib.Obj.3o
 /usr/share/man/man3/Stdlib.Oo.3o
 /usr/share/man/man3/Stdlib.Option.3o
 /usr/share/man/man3/Stdlib.Out_channel.3o
 /usr/share/man/man3/Stdlib.Parsing.3o
-/usr/share/man/man3/Stdlib.Pervasives.3o
 /usr/share/man/man3/Stdlib.Printexc.3o
 /usr/share/man/man3/Stdlib.Printf.3o
 /usr/share/man/man3/Stdlib.Queue.3o
 /usr/share/man/man3/Stdlib.Random.3o
 /usr/share/man/man3/Stdlib.Result.3o
 /usr/share/man/man3/Stdlib.Scanf.3o
+/usr/share/man/man3/Stdlib.Semaphore.3o
 /usr/share/man/man3/Stdlib.Seq.3o
 /usr/share/man/man3/Stdlib.Set.3o
 /usr/share/man/man3/Stdlib.Stack.3o
 /usr/share/man/man3/Stdlib.StdLabels.3o
-/usr/share/man/man3/Stdlib.Stream.3o
 /usr/share/man/man3/Stdlib.String.3o
 /usr/share/man/man3/Stdlib.StringLabels.3o
 /usr/share/man/man3/Stdlib.Sys.3o
@@ -1826,7 +1848,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Stdlib.Unit.3o
 /usr/share/man/man3/Stdlib.Weak.3o
 /usr/share/man/man3/Str.3o
-/usr/share/man/man3/Stream.3o
 /usr/share/man/man3/String.3o
 /usr/share/man/man3/StringLabels.3o
 /usr/share/man/man3/Strongly_connected_components.3o
@@ -1842,7 +1863,6 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 /usr/share/man/man3/Targetint.3o
 /usr/share/man/man3/Terminfo.3o
 /usr/share/man/man3/Thread.3o
-/usr/share/man/man3/ThreadUnix.3o
 /usr/share/man/man3/Uchar.3o
 /usr/share/man/man3/Unit.3o
 /usr/share/man/man3/Unix.3o
@@ -1862,6 +1882,7 @@ find %{buildroot}/usr/lib64/ocaml -exec chmod g-w {} \;
 %defattr(-,root,root,-)
 /usr/lib64/ocaml/libasmrun_shared.so
 /usr/lib64/ocaml/libcamlrun_shared.so
+/usr/lib64/ocaml/stublibs/dllcamlruntime_events.so
 /usr/lib64/ocaml/stublibs/dllcamlstr.so
 /usr/lib64/ocaml/stublibs/dllthreads.so
 /usr/lib64/ocaml/stublibs/dllunix.so
